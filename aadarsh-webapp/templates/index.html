@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Add User Section -->
+<div class="glass-card fade-in" style="animation-delay: 0.1s;">
+    <div class="card-header">
+        <h5 class="card-title">
+            <span class="title-icon">➕</span>
+            Add New User
+        </h5>
+        <div class="title-underline"></div>
+    </div>
+
+    <div class="card-body">
+        <form method="POST" class="modern-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Name</label>
+                    <input name="name" class="form-input" placeholder="Enter name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input name="email" type="email" class="form-input" placeholder="Enter email" required>
+                </div>
+                <div class="form-group btn-group">
+                    <button class="btn-gradient btn-add">
+                        <span class="btn-text">Add User</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Users List Section -->
+<div class="glass-card fade-in" style="animation-delay: 0.2s;">
+    <div class="card-header">
+        <h5 class="card-title">
+            <span class="title-icon">👥</span>
+            Users Database
+        </h5>
+        <div class="title-underline"></div>
+    </div>
+
+    <div class="card-body">
+        {% if users %}
+        <div class="table-wrapper">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="th-content">Name</div>
+                        </th>
+                        <th>
+                            <div class="th-content">Email</div>
+                        </th>
+                        <th>
+                            <div class="th-content">Actions</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr class="table-row">
+                        <td>
+                            <div class="user-name">{{ user.name }}</div>
+                        </td>
+                        <td>
+                            <div class="user-email">{{ user.email }}</div>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="/edit/{{ user.id }}" class="btn-action btn-edit">
+                                    <span>✎</span>
+                                    Edit
+                                </a>
+                                <a href="/delete/{{ user.id }}" class="btn-action btn-delete"
+                                    onclick="return confirm('Are you sure you want to delete this user?')">
+                                    <span>🗑</span>
+                                    Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">📭</div>
+            <p class="empty-text">No users yet. Add your first user above!</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

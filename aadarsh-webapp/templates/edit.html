@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="glass-card fade-in" style="animation-delay: 0.1s;">
+    <div class="card-header">
+        <h5 class="card-title">
+            <span class="title-icon">✎</span>
+            Edit User
+        </h5>
+        <div class="title-underline"></div>
+    </div>
+
+    <div class="card-body">
+        <form method="POST" class="modern-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Name</label>
+                    <input name="name" class="form-input" value="{{ user.name }}" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input name="email" type="email" class="form-input" value="{{ user.email }}" required>
+                </div>
+                <div class="form-group btn-group">
+                    <button class="btn-gradient btn-update">
+                        <span class="btn-text">Update</span>
+                        <span class="btn-icon">✓</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div class="back-link-wrapper">
+            <a href="/" class="back-link">
+                <span class="back-icon">←</span>
+                Back to Users
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
